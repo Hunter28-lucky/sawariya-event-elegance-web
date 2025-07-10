@@ -43,14 +43,11 @@ All colors MUST be HSL.
     --rose-gold: 15 50% 75%;
     --cream: 35 50% 95%;
     --warm-white: 35 20% 98%;
-    --dark-overlay: 25 15% 8%;
-    --dark-overlay-light: 25 15% 12%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--dark-overlay)) 0%, hsl(var(--dark-overlay-light)) 50%, hsl(var(--gold-dark) / 0.3) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--rose-gold)), hsl(var(--gold)));
     --gradient-luxury: linear-gradient(45deg, hsl(var(--gold-dark)) 0%, hsl(var(--gold)) 50%, hsl(var(--gold-light)) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(var(--warm-white)), hsl(var(--cream)));
-    --gradient-dark-overlay: linear-gradient(to bottom, hsl(var(--dark-overlay) / 0.95), hsl(var(--dark-overlay) / 0.85));
     
     /* Shadows */
     --shadow-luxury: 0 20px 50px -10px hsl(var(--gold) / 0.3);
@@ -60,7 +57,6 @@ All colors MUST be HSL.
     /* Animations */
     --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s ease-out;
-    --transition-mobile: all 0.2s ease-out;
 
     --radius: 0.5rem;
 

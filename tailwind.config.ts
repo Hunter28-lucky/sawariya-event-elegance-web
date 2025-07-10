@@ -70,15 +70,12 @@ export default {
 				},
 				'rose-gold': 'hsl(var(--rose-gold))',
 				cream: 'hsl(var(--cream))',
-				'warm-white': 'hsl(var(--warm-white))',
-				'dark-overlay': 'hsl(var(--dark-overlay))',
-				'dark-overlay-light': 'hsl(var(--dark-overlay-light))'
+				'warm-white': 'hsl(var(--warm-white))'
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-luxury': 'var(--gradient-luxury)',
-				'gradient-warm': 'var(--gradient-warm)',
-				'gradient-dark-overlay': 'var(--gradient-dark-overlay)'
+				'gradient-warm': 'var(--gradient-warm)'
 			},
 			boxShadow: {
 				'luxury': 'var(--shadow-luxury)',
@@ -87,8 +84,7 @@ export default {
 			},
 			transitionProperty: {
 				'luxury': 'var(--transition-luxury)',
-				'smooth': 'var(--transition-smooth)',
-				'mobile': 'var(--transition-mobile)'
+				'smooth': 'var(--transition-smooth)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
