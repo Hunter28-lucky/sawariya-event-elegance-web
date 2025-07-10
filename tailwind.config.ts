@@ -61,7 +61,30 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom Shree Sawariya Events colors
+				gold: {
+					DEFAULT: 'hsl(var(--gold))',
+					light: 'hsl(var(--gold-light))',
+					dark: 'hsl(var(--gold-dark))'
+				},
+				'rose-gold': 'hsl(var(--rose-gold))',
+				cream: 'hsl(var(--cream))',
+				'warm-white': 'hsl(var(--warm-white))'
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-luxury': 'var(--gradient-luxury)',
+				'gradient-warm': 'var(--gradient-warm)'
+			},
+			boxShadow: {
+				'luxury': 'var(--shadow-luxury)',
+				'elegant': 'var(--shadow-elegant)',
+				'soft': 'var(--shadow-soft)'
+			},
+			transitionProperty: {
+				'luxury': 'var(--transition-luxury)',
+				'smooth': 'var(--transition-smooth)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
