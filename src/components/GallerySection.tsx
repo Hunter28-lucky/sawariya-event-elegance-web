@@ -1,185 +1,245 @@
-import { useState } from "react";
-import { Filter, Eye, ExternalLink } from "lucide-react";
+import { Camera, Heart, Star, Sparkles, Eye, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import galleryImage from "@/assets/gallery-collage.jpg";
 
 const GallerySection = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-  const filters = ["All", "Weddings", "Birthdays", "Corporate", "Religious", "Parties"];
-
-  const galleryItems = [
+  const galleryCategories = [
     {
-      id: 1,
-      category: "Weddings",
-      title: "Royal Wedding Setup",
-      image: galleryImage,
-      description: "Luxurious mandap decoration with golden elements"
+      title: "Weddings",
+      count: "250+",
+      description: "Traditional & modern wedding celebrations",
+      gradient: "from-rose to-coral"
     },
     {
-      id: 2,
-      category: "Birthdays",
-      title: "Princess Theme Birthday",
-      image: galleryImage,
-      description: "Magical princess themed celebration"
+      title: "Corporate",
+      count: "150+",
+      description: "Professional business events",
+      gradient: "from-blue to-teal"
     },
     {
-      id: 3,
-      category: "Corporate",
-      title: "Annual Conference",
-      image: galleryImage,
-      description: "Professional corporate event setup"
-    },
-    {
-      id: 4,
-      category: "Religious",
-      title: "Ganesh Chaturthi Celebration",
-      image: galleryImage,
-      description: "Traditional religious ceremony"
-    },
-    {
-      id: 5,
-      category: "Parties",
-      title: "Engagement Ceremony",
-      image: galleryImage,
-      description: "Elegant engagement party setup"
-    },
-    {
-      id: 6,
-      category: "Weddings",
-      title: "Destination Wedding",
-      image: galleryImage,
-      description: "Beautiful outdoor wedding arrangement"
-    },
-    {
-      id: 7,
-      category: "Birthdays",
-      title: "Superhero Theme",
-      image: galleryImage,
-      description: "Action-packed superhero birthday party"
-    },
-    {
-      id: 8,
-      category: "Corporate",
-      title: "Product Launch",
-      image: galleryImage,
-      description: "Modern product launch event"
-    },
-    {
-      id: 9,
-      category: "Religious",
-      title: "Diwali Celebration",
-      image: galleryImage,
-      description: "Traditional Diwali festivities"
+      title: "Social Events",
+      count: "100+",
+      description: "Birthday parties & celebrations",
+      gradient: "from-purple to-blue"
     }
   ];
 
-  const filteredItems = activeFilter === "All" 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeFilter);
+  const testimonials = [
+    {
+      name: "Priya & Raj",
+      event: "Wedding Celebration",
+      rating: 5,
+      comment: "Our dream wedding came to life beautifully. Every detail was perfect!"
+    },
+    {
+      name: "Tech Corp",
+      event: "Annual Conference",
+      rating: 5,
+      comment: "Professional, organized, and exceeded all our expectations."
+    },
+    {
+      name: "Sharma Family",
+      event: "25th Anniversary",
+      rating: 5,
+      comment: "A magical celebration that our family will cherish forever."
+    }
+  ];
 
   return (
-    <section id="gallery" className="py-20 bg-gradient-warm">
-      <div className="container mx-auto px-4">
+    <section id="gallery" className="py-16 md:py-24 bg-gradient-warm relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-40 left-10 w-36 h-36 bg-rose/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-40 right-10 w-44 h-44 bg-purple/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center space-y-4 mb-12">
-          <h3 className="text-gold-dark font-semibold tracking-wide uppercase">Our Portfolio</h3>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            Event Gallery
+        <div className="text-center mb-16">
+          {/* Section Badge */}
+          <div className="inline-flex items-center space-x-2 glass-card mb-6">
+            <Camera className="w-4 h-4 text-rose animate-pulse" />
+            <span className="text-sm font-semibold bg-gradient-luxury bg-clip-text text-transparent">
+              Our Portfolio
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <span className="text-foreground">Moments We've</span>
+            <br />
+            <span className="bg-gradient-hero bg-clip-text text-transparent animate-gradient">
+              Created Together
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore our collection of beautifully executed events and celebrations 
-            that showcase our creativity and attention to detail.
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Explore our collection of beautifully crafted events and see how we 
+            transform dreams into unforgettable experiences.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {filters.map((filter) => (
-            <Button
-              key={filter}
-              variant={activeFilter === filter ? "luxury" : "elegant"}
-              onClick={() => setActiveFilter(filter)}
-              className="transition-all duration-300"
-            >
-              <Filter className="w-4 h-4 mr-2" />
-              {filter}
-            </Button>
-          ))}
-        </div>
-
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {filteredItems.map((item) => (
-            <Card 
-              key={item.id} 
-              className="group bg-card border-gold/20 hover:border-gold/40 hover:shadow-luxury transition-all duration-500 overflow-hidden"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex space-x-2">
-                    <Button size="sm" variant="luxury" className="w-10 h-10 p-0">
-                      <Eye className="w-4 h-4" />
-                    </Button>
-                    <Button size="sm" variant="luxury" className="w-10 h-10 p-0">
-                      <ExternalLink className="w-4 h-4" />
+        {/* Main Gallery Feature */}
+        <div className="mb-16">
+          <div className="glass-card overflow-hidden group cursor-pointer hover:shadow-glow transition-all duration-500">
+            <div className="relative">
+              <img
+                src={galleryImage}
+                alt="Event Gallery Showcase"
+                className="w-full h-64 md:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple/20 via-transparent to-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Overlay Content */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="glass-card">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                        Premium Event Gallery
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Over 500+ successful events captured in stunning detail
+                      </p>
+                    </div>
+                    <Button variant="glass" size="icon-lg" className="shrink-0">
+                      <Eye className="w-6 h-6" />
                     </Button>
                   </div>
                 </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-luxury text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                    {item.category}
-                  </span>
-                </div>
               </div>
-              
-              <CardContent className="p-6 space-y-3">
-                <h4 className="text-xl font-semibold text-foreground group-hover:text-gold-dark transition-colors duration-300">
-                  {item.title}
-                </h4>
-                <p className="text-muted-foreground">
-                  {item.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Instagram Integration Section */}
-        <div className="bg-background rounded-3xl p-8 md:p-12 shadow-elegant text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">
-            Follow Our Latest Work
-          </h3>
-          <p className="text-lg text-muted-foreground mb-8">
-            Stay updated with our latest events and behind-the-scenes moments on Instagram
-          </p>
-          
-          <div className="space-y-4">
-            <div className="flex justify-center items-center space-x-4 text-gold-dark">
-              <div className="w-12 h-12 bg-gradient-luxury rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">IG</span>
-              </div>
-              <span className="text-xl font-semibold">@shreesawariyaevents2025</span>
             </div>
-            
-            <Button variant="hero" size="lg" className="text-lg px-8 py-6">
-              Follow Us on Instagram
-            </Button>
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <Button variant="elegant" size="lg" className="text-lg px-8 py-6">
-            View Complete Portfolio
-          </Button>
+        {/* Gallery Categories */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+          {galleryCategories.map((category, index) => (
+            <div 
+              key={index}
+              className="glass-card hover:shadow-glow transition-all duration-300 hover:scale-105 group cursor-pointer"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="text-center space-y-4">
+                <div className={`w-16 h-16 bg-gradient-to-r ${category.gradient} rounded-2xl flex items-center justify-center mx-auto shadow-soft group-hover:shadow-glow transition-all duration-300`}>
+                  <Camera className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-purple transition-colors">
+                    {category.title}
+                  </h3>
+                  <div className="text-2xl font-bold bg-gradient-luxury bg-clip-text text-transparent">
+                    {category.count}
+                  </div>
+                  <p className="text-muted-foreground">
+                    {category.description}
+                  </p>
+                </div>
+
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full group-hover:bg-purple/10 transition-colors"
+                >
+                  View Gallery
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Testimonials */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              What Our <span className="bg-gradient-hero bg-clip-text text-transparent">Clients Say</span>
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Don't just take our word for it - hear from the families and businesses 
+              who trusted us with their special moments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="glass-card hover:shadow-glow transition-all duration-300 hover:scale-105"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                {/* Stars */}
+                <div className="flex justify-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-gold text-gold" />
+                  ))}
+                </div>
+
+                {/* Comment */}
+                <p className="text-muted-foreground text-center mb-6 italic leading-relaxed">
+                  "{testimonial.comment}"
+                </p>
+
+                {/* Client Info */}
+                <div className="text-center space-y-1">
+                  <div className="font-semibold text-foreground">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {testimonial.event}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center">
+          <div className="glass-card max-w-4xl mx-auto">
+            <div className="space-y-6">
+              <div className="w-20 h-20 bg-gradient-button rounded-2xl flex items-center justify-center mx-auto shadow-glow">
+                <Heart className="w-10 h-10 text-white animate-pulse" />
+              </div>
+              
+              <h3 className="text-2xl md:text-3xl font-bold">
+                Ready to Create Your Own
+                <span className="bg-gradient-hero bg-clip-text text-transparent"> Magical Moment</span>?
+              </h3>
+              
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Let's discuss your vision and create an event that will be remembered 
+                and cherished for years to come.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  variant="hero" 
+                  size="xl"
+                  onClick={() => scrollToSection('#contact')}
+                >
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Start Your Journey
+                </Button>
+                <Button 
+                  variant="elegant" 
+                  size="xl"
+                >
+                  <Camera className="w-5 h-5 mr-2" />
+                  View Full Gallery
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

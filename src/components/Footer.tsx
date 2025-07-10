@@ -1,175 +1,240 @@
-import { Phone, Mail, MapPin, Instagram, Facebook, Heart } from "lucide-react";
+import { Phone, Mail, MapPin, Heart, Star, Sparkles, Instagram, Facebook, Twitter, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    services: [
-      "Wedding Planning",
-      "Birthday Parties",
-      "Corporate Events",
-      "Religious Functions",
-      "Catering Services",
-      "Photography"
-    ],
-    quickLinks: [
-      "About Us",
-      "Our Portfolio",
-      "Testimonials",
-      "Get Quote",
-      "Contact Us",
-      "Blog"
-    ],
-    eventTypes: [
-      "Traditional Weddings",
-      "Modern Celebrations",
-      "Corporate Meetings",
-      "Product Launches",
-      "Anniversary Parties",
-      "Festival Celebrations"
-    ]
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
+  const quickLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About Us", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Contact", href: "#contact" }
+  ];
+
+  const services = [
+    "Wedding Planning",
+    "Corporate Events",
+    "Birthday Parties",
+    "Anniversary Celebrations",
+    "Photography & Video",
+    "Entertainment Services"
+  ];
+
+  const socialLinks = [
+    { name: "Instagram", icon: Instagram, href: "#", gradient: "from-pink-500 to-purple-500" },
+    { name: "Facebook", icon: Facebook, href: "#", gradient: "from-blue-600 to-blue-700" },
+    { name: "Twitter", icon: Twitter, href: "#", gradient: "from-blue-400 to-blue-500" },
+    { name: "YouTube", icon: Youtube, href: "#", gradient: "from-red-500 to-red-600" }
+  ];
+
   return (
-    <footer className="bg-gradient-to-br from-foreground to-muted-foreground text-background">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gradient-warm relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-purple/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-luxury bg-clip-text text-transparent">
-                Shree Sawariya Events
-              </h3>
-              <p className="text-background/80 leading-relaxed mb-6">
-                Creating unforgettable celebrations with passion, creativity, and precision. 
-                Your dream event is our commitment.
+        <div className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* Company Info */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Logo */}
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-button rounded-xl flex items-center justify-center shadow-glow">
+                  <Sparkles className="w-7 h-7 text-white animate-pulse" />
+                </div>
+                <div className="text-2xl font-bold bg-gradient-luxury bg-clip-text text-transparent">
+                  Shree Sawariya Events
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-muted-foreground leading-relaxed max-w-md">
+                Creating unforgettable celebrations since 2019. We transform your dreams into 
+                magical realities with our expertise in event planning and management.
               </p>
+
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue to-teal rounded-lg flex items-center justify-center shadow-soft">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">+91 98765 43210</div>
+                    <div className="text-sm text-muted-foreground">24/7 Available</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple to-blue rounded-lg flex items-center justify-center shadow-soft">
+                    <Mail className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">info@shreesawariyaevents.com</div>
+                    <div className="text-sm text-muted-foreground">Quick Response</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-rose to-coral rounded-lg flex items-center justify-center shadow-soft">
+                    <MapPin className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground">Mumbai, Maharashtra</div>
+                    <div className="text-sm text-muted-foreground">Service Across India</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="flex flex-wrap gap-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-luxury bg-clip-text text-transparent">500+</div>
+                  <div className="text-sm text-muted-foreground">Events</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-button bg-clip-text text-transparent">5+</div>
+                  <div className="text-sm text-muted-foreground">Years</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">4.9</div>
+                  <div className="text-sm text-muted-foreground">Rating</div>
+                </div>
+              </div>
             </div>
-            
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-gold" />
-                <span className="text-sm">+91 98765 43210</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-gold" />
-                <span className="text-sm">info@shreesawariyaevents.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-gold" />
-                <span className="text-sm">Mumbai, Maharashtra, India</span>
-              </div>
-            </div>
 
-            {/* Social Media */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-gold">Follow Us</h4>
-              <div className="flex space-x-3">
-                <Button size="sm" variant="outline" className="w-10 h-10 p-0 border-gold/30 hover:border-gold hover:bg-gold/20">
-                  <Instagram className="w-4 h-4" />
-                </Button>
-                <Button size="sm" variant="outline" className="w-10 h-10 p-0 border-gold/30 hover:border-gold hover:bg-gold/20">
-                  <Facebook className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
+            {/* Quick Links */}
+            <div className="space-y-6">
+              <h3 className="text-lg font-bold text-foreground">Quick Links</h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link) => (
+                  <li key={link.name}>
+                    <button
+                      onClick={() => scrollToSection(link.href)}
+                      className="text-muted-foreground hover:text-purple transition-colors duration-300 hover:translate-x-1 transform inline-block"
+                    >
+                      {link.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-gold">Our Services</h4>
-            <ul className="space-y-3">
-              {footerLinks.services.map((service, index) => (
-                <li key={index}>
-                  <a
-                    href="#services"
-                    className="text-background/80 hover:text-gold transition-colors duration-300 text-sm"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-gold">Quick Links</h4>
-            <ul className="space-y-3">
-              {footerLinks.quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="text-background/80 hover:text-gold transition-colors duration-300 text-sm"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Event Types */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-gold">Event Types</h4>
-            <ul className="space-y-3">
-              {footerLinks.eventTypes.map((eventType, index) => (
-                <li key={index}>
-                  <a
-                    href="#gallery"
-                    className="text-background/80 hover:text-gold transition-colors duration-300 text-sm"
-                  >
-                    {eventType}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Newsletter Subscription */}
-        <div className="py-8 border-t border-background/20">
-          <div className="text-center space-y-4">
-            <h4 className="text-xl font-semibold text-gold">Stay Updated</h4>
-            <p className="text-background/80 max-w-2xl mx-auto">
-              Subscribe to our newsletter for event planning tips, latest trends, and exclusive offers.
-            </p>
-            <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-md bg-background/10 border border-background/20 text-background placeholder:text-background/60 focus:outline-none focus:border-gold"
-              />
-              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-foreground">
-                Subscribe
+              {/* CTA Button */}
+              <Button 
+                variant="elegant" 
+                size="sm" 
+                className="w-full"
+                onClick={() => scrollToSection('#contact')}
+              >
+                <Heart className="w-4 h-4 mr-2" />
+                Plan Your Event
               </Button>
             </div>
+
+            {/* Services */}
+            <div className="space-y-6">
+              <h3 className="text-lg font-bold text-foreground">Our Services</h3>
+              <ul className="space-y-3">
+                {services.map((service) => (
+                  <li key={service} className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-gradient-button rounded-full"></div>
+                    <span className="text-muted-foreground hover:text-purple transition-colors duration-300 cursor-pointer">
+                      {service}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-background/20">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-background/80 text-sm">
-              © {currentYear} Shree Sawariya Events. All rights reserved.
+        {/* Newsletter Section */}
+        <div className="py-12 border-t border-purple/20">
+          <div className="glass-card max-w-4xl mx-auto text-center">
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-xl md:text-2xl font-bold">
+                  Stay Updated with Our Latest Events
+                </h3>
+                <p className="text-muted-foreground">
+                  Subscribe to our newsletter and get exclusive event planning tips, 
+                  latest trends, and special offers.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 bg-background/50 border border-purple/30 rounded-lg focus:border-purple focus:outline-none text-foreground"
+                />
+                <Button variant="hero" size="lg">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Subscribe
+                </Button>
+              </div>
             </div>
-            
-            <div className="flex items-center space-x-1 text-background/80 text-sm">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-400 fill-current" />
-              <span>for creating beautiful memories</span>
+          </div>
+        </div>
+
+        {/* Social Media & Bottom Bar */}
+        <div className="py-8 border-t border-purple/20">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Social Media */}
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-muted-foreground">Follow us:</span>
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className={`w-10 h-10 bg-gradient-to-r ${social.gradient} rounded-lg flex items-center justify-center shadow-soft hover:shadow-glow transition-all duration-300 hover:scale-110`}
+                    aria-label={social.name}
+                  >
+                    <Icon className="w-5 h-5 text-white" />
+                  </a>
+                );
+              })}
             </div>
-            
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-background/80 hover:text-gold transition-colors duration-300">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-background/80 hover:text-gold transition-colors duration-300">
-                Terms of Service
-              </a>
+
+            {/* Trust Indicators */}
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                ))}
+                <span className="text-sm text-muted-foreground ml-2">4.9/5 Rating</span>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-purple/30"></div>
+              <div className="text-sm text-muted-foreground">500+ Happy Clients</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="py-6 border-t border-purple/20">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+            <div>
+              © 2024 Shree Sawariya Events. All rights reserved. 
+              <span className="bg-gradient-luxury bg-clip-text text-transparent font-semibold ml-1">
+                Crafted with ❤️
+              </span>
+            </div>
+            <div className="flex space-x-6">
+              <a href="#" className="hover:text-purple transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-purple transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-purple transition-colors">Sitemap</a>
             </div>
           </div>
         </div>
